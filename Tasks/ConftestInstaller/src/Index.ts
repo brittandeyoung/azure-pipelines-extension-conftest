@@ -19,7 +19,7 @@ async function verifyConftest() {
     console.log(tasks.loc("VerifyConftestInstallation"));
     let conftestPath = tasks.which("conftest", true);
     let conftestTool : ToolRunner = tasks.tool(conftestPath);
-    conftestTool.arg("version");
+    conftestTool.arg("--version");
     return conftestTool.exec();
 }
 
