@@ -17,7 +17,7 @@
     "conftest"
   ],
   "icons": {
-      "default": "images/extension-icon.png"        
+      "default": "images/open-policy-agent.png"        
   },
   "files": [
     {
