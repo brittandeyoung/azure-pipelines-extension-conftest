@@ -54,7 +54,7 @@ export async function downloadConftest(inputVersion: string): Promise<string> {
           cachedToolPath = await tools.cacheDir(conftestUnzippedPath, conftestToolName, version);
         }
         if (!isWindows) {
-          let conftestUnzippedPath = tools.extractTar(conftestDownloadPath);
+          let conftestUnzippedPath = await tools.extractTar(conftestDownloadPath);
           cachedToolPath = await tools.cacheDir(conftestUnzippedPath, conftestToolName, version);
         }
     }
