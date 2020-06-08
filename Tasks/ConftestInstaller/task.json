@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "87ecf39a-a717-4e3f-8712-6ba93a50ee79",
+  "name": "conftestInstaller",
+  "friendlyName": "Conftest Tool Installer",
+  "description": "Download and install a specific version of conftest",
+  "helpMarkDown": "",
+  "category": "Utility",
+  "author": "BrittanDeYoung",
+  "version": {
+      "Major": 0,
+      "Minor": 0,
+      "Patch": 1
+  },
+  "instanceNameFormat": "Install Conftest $(conftestVersion)",
+  "inputs": [
+      {
+          "name": "conftestVersion",
+          "type": "string",
+          "label": "Version",
+          "defaultValue": "0.18.2",
+          "required": true,
+          "helpMarkDown": "The version of Conftest which should be installed on the agent"
+      }
+  ],
+  "execution": {
+      "Node10": {
+          "target": ".bin/Index.js"
+      }
+  },
+  "outputVariables": [
+    {
+        "name": "conftestLocation",
+        "description": "The location of the conftest binary that was installed on the agent."
+    }
+  ],
+  "messages": {
+    "VerifyConftestInstallation": "Verifying Conftest installation...",
+    "InputVersionNotValidSemanticVersion": "Input version %s is not a valid semantic version",
+    "ConftestNotFoundInFolder": "Conftest executable not found in path %s",
+    "OperatingSystemNotSupported": "Operating system %s is not supported",
+    "ArchitectureNotSupported": "Architecture %s is not supported",
+    "ConftestDownloadFailed": "Failed to download Conftest from url %s. Error %s"
+  }
+}

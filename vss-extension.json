@@ -1,0 +1,42 @@
+{
+  "manifestVersion": 1,
+  "id": "conftest",
+  "name": "contest",
+  "version": "0.0.1",
+  "publisher": "brittandeyoung",
+  "targets": [
+      {
+          "id": "Microsoft.VisualStudio.Services"
+      }
+  ],    
+  "description": "Install and run conftest in your pipeline",
+  "categories": [
+      "Azure Pipelines"
+  ],
+  "Tags": [ 
+    "conftest"
+  ],
+  "icons": {
+      "default": "images/extension-icon.png"        
+  },
+  "files": [
+    {
+      "path": "Tasks/Conftest"
+  },
+  {
+      "path": "Tasks/ConftestInstaller"
+  }
+  ],
+  "contributions": [
+    {
+      "id": "87ecf39a-a717-4e3f-8712-6ba93a50ee79",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+          "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+          "name": "Tasks/ConftestInstaller"
+      }
+    }
+  ]
+}
