@@ -20,5 +20,9 @@ stages:
         command: 'install'
         workingDir: './Tasks/ConftestInstaller'
     - script: |
+        tsc
+      displayName: Run Installer Task
+      workingDirectory: ./Tasks/ConftestInstaller/
+    - script: |
         node ./Tasks/ConftestInstaller/.bin/Index.js
       displayName: Run Installer Task
