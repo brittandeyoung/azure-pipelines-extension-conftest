@@ -19,6 +19,6 @@ stages:
       inputs:
         command: 'install'
         workingDir: './Tasks/ConftestInstaller'
-    - task: conftestInstaller@0
-      inputs:
-        conftestVersion: '0.18.2'
+    - script: |
+        node ./Tasks/ConftestInstaller/.bin/Index.js
+      displayName: Run Installer Task
