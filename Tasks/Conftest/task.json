@@ -1,0 +1,66 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "68e34e1e-bb2e-47cf-adba-b7d87548722c",
+  "name": "conftest",
+  "friendlyName": "Conftest",
+  "description": "A task for running Conftest commands",
+  "helpMarkDown": "",
+  "category": "Utility",
+  "author": "BrittanDeYoung",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "version": {
+      "Major": 0,
+      "Minor": 0,
+      "Patch": 1
+  },
+  "instanceNameFormat": "Conftest",
+  "inputs": [
+    {
+        "name": "conftestCommand",
+        "type": "pickList",
+        "label": "Command",
+        "defaultValue": "test",
+        "required": true,
+        "helpMarkDown": "Select the Conftest command to run, or select CLI to run a Terraform command line script in an authenticated environment.",
+        "options": {
+            "help": "help",
+            "parse": "parse",
+            "pull": "pull",
+            "push": "push",
+            "test": "test",
+            "verify": "verify"
+        }
+    },
+    {
+      "name": "file",
+      "type": "filePath",
+      "label": "File",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Fully qualified path of the file to evaluate",
+      "visibleRule": "command = test"
+  }
+  ],
+  "execution": {
+      "Node10": {
+          "target": ".bin/Index.js"
+      }
+  },
+  "outputVariables": [
+    {
+        "name": "conftestLocation",
+        "description": "The location of the conftest binary that was installed on the agent."
+    }
+  ],
+  "messages": {
+    "VerifyConftestInstallation": "Verifying Conftest installation...",
+    "InputVersionNotValidSemanticVersion": "Input version %s is not a valid semantic version",
+    "ConftestNotFoundInFolder": "Conftest executable not found in path %s",
+    "OperatingSystemNotSupported": "Operating system %s is not supported",
+    "ArchitectureNotSupported": "Architecture %s is not supported",
+    "ConftestDownloadFailed": "Failed to download Conftest from url %s. Error %s"
+  }
+}

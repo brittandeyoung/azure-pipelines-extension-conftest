@@ -19,6 +19,7 @@ stages:
       inputs:
         command: 'install'
         workingDir: './Tasks/ConftestInstaller'
+      displayName: NPM Install ConftestInstaller
     - script: |
         tsc
       displayName: Run Installer Task
@@ -26,4 +27,4 @@ stages:
     - script: |
         export INPUT_CONFTESTVERSION="0.18.2"
         node ./Tasks/ConftestInstaller/.bin/Index.js
-      displayName: Run Installer Task
+      displayName: Run ConftestInstaller Task

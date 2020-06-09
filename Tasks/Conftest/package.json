@@ -1,0 +1,27 @@
+{
+  "name": "azure-pipelines-conftest-task",
+  "version": "0.0.1",
+  "description": "A Conftest Azure DevOps Task",
+  "main": ".bin/Index.js",
+  "scripts": {
+    "test": "node -r dotenv/config .bin/src/Index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brittandeyoung/azure-pipelines-extension-conftest.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brittandeyoung/azure-pipelines-extension-conftest/issues"
+  },
+  "homepage": "https://github.com/brittandeyoung/azure-pipelines-extension-conftest#readme",
+  "dependencies": {
+    "azure-pipelines-task-lib": "^2.9.5",
+    "azure-pipelines-tool-lib": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.12",
+    "@types/q": "^1.5.4"
+  }
+}
