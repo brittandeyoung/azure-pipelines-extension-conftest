@@ -24,5 +24,6 @@ stages:
       displayName: Run Installer Task
       workingDirectory: ./Tasks/ConftestInstaller/
     - script: |
+        export INPUT_CONFTESTVERSION="0.18.2"
         node ./Tasks/ConftestInstaller/.bin/Index.js
       displayName: Run Installer Task
