@@ -41,7 +41,7 @@
       "defaultValue": "",
       "required": true,
       "helpMarkDown": "Fully qualified path of the file to evaluate",
-      "visibleRule": "command = test"
+      "visibleRule": "command = test or parse"
   }
   ],
   "execution": {

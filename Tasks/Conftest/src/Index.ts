@@ -6,13 +6,26 @@ import path = require('path');
 
 async function runConftest() {
     let inputCommand = tasks.getInput("conftestCommand", true);
-    let inputArgs = tasks.getInput("conftestArgs", false);    
+    let inputArgs = tasks.getInput("conftestArgs", false); 
+    let inputFile = tasks.getInput("conftestFile", false); 
     let envPath = process.env['PATH'];
     let conftestPath = tasks.which("conftest", true);
     let conftestTool : ToolRunner = tasks.tool(conftestPath);
 
-    conftestTool.arg([inputCommand!, inputArgs!]);
-    return conftestTool.exec();
+    if (inputCommand == "test") {
+      conftestTool.arg([inputCommand!, inputFile!, inputArgs!]);
+      return conftestTool.exec();
+    }
+    
+    if (inputCommand == "parse") {
+      conftestTool.arg([inputCommand!, inputFile!, inputArgs!]);
+      return conftestTool.exec();
+    }
+
+    else {
+      conftestTool.arg([inputCommand!, inputArgs!]);
+      return conftestTool.exec();
+    }
 }
 
 async function run() {

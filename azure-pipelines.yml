@@ -41,4 +41,10 @@ stages:
         export INPUT_CONFTESTCOMMAND="--version"
         export INPUT_CONFTESTARGS=""
         node ./Tasks/Conftest/.bin/Index.js
-      displayName: Run Conftest Task
+      displayName: Run Conftest Task Version
+    - script: |
+        export INPUT_CONFTESTCOMMAND="test"
+        export INPUT_CONFTESTFILE="./tests/test.json"
+        export INPUT_CONFTESTARGS=""
+        node ./Tasks/Conftest/.bin/Index.js
+      displayName: Run Conftest Task Test
