@@ -12,7 +12,7 @@ async function runConftest() {
     let conftestTool : ToolRunner = tasks.tool(conftestPath);
 
     conftestTool.arg([inputCommand!, inputArgs!]);
-    // Prepend the tools path. Instructs the agent to prepend for future tasks
+    return conftestTool.exec();
 }
 
 async function run() {
