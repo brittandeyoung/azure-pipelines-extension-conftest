@@ -15,6 +15,9 @@ stages:
   - job: Build_Task
     displayName: Build Task
     steps:
+    - task: NodeTool@0 
+      inputs:
+        versionSpec: $(node_version)
     - task: Npm@1
       inputs:
         command: 'install'
@@ -29,8 +32,12 @@ stages:
         tsc
       displayName: Build ConftestInstaller Task
       workingDirectory: ./Tasks/ConftestInstaller/
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        workingDir: './Tasks/ConftestInstaller'
+        customCommand: 'install mocha -g'
     - script: |
-        npm install --dev
         mocha .bin/tests/_suite.js
       displayName: Unit Tests ConftestInstaller Task
       workingDirectory: ./Tasks/ConftestInstaller/
