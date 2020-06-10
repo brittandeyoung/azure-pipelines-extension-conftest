@@ -15,9 +15,6 @@ stages:
   - job: Build_Task
     displayName: Build Task
     steps:
-    - task: NodeTool@0 
-      inputs:
-        versionSpec: $(node_version)
     - task: Npm@1
       inputs:
         command: 'install'
