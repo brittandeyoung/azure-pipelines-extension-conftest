@@ -30,6 +30,7 @@ stages:
       displayName: Build ConftestInstaller Task
       workingDirectory: ./Tasks/ConftestInstaller/
     - script: |
+        npm install --dev
         mocha .bin/tests/_suite.js
       displayName: Unit Tests ConftestInstaller Task
       workingDirectory: ./Tasks/ConftestInstaller/
