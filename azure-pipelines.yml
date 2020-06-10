@@ -34,10 +34,12 @@ stages:
         command: 'custom'
         workingDir: './Tasks/ConftestInstaller'
         customCommand: 'install mocha'
-    - script: |
-        mocha .bin/tests/_suite.js
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        workingDir: './Tasks/ConftestInstaller'
+        customCommand: 'test'
       displayName: Unit Tests ConftestInstaller Task
-      workingDirectory: ./Tasks/ConftestInstaller/
     - script: |
         export INPUT_CONFTESTVERSION="0.18.2"
         node ./Tasks/ConftestInstaller/.bin/Index.js
