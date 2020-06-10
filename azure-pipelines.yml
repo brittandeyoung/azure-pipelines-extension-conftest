@@ -33,7 +33,7 @@ stages:
       inputs:
         command: 'custom'
         workingDir: './Tasks/ConftestInstaller'
-        customCommand: 'install mocha -g'
+        customCommand: 'install mocha'
     - script: |
         mocha .bin/tests/_suite.js
       displayName: Unit Tests ConftestInstaller Task
