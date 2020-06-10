@@ -6,8 +6,8 @@ import path = require('path');
 
 async function runConftest() {
     let inputCommand = tasks.getInput("conftestCommand", true);
-    let inputArgs = tasks.getInput("conftestArgs", false) || null;
-    let inputFile = tasks.getInput("conftestFile", false) || null; 
+    let inputArgs = tasks.getInput("conftestArgs", false) ?? "";
+    let inputFile = tasks.getInput("conftestFile", false) ?? ""; 
     let envPath = process.env['PATH'];
     let conftestPath = tasks.which("conftest", true);
     let conftestTool : ToolRunner = tasks.tool(conftestPath);
