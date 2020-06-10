@@ -13,17 +13,17 @@ async function runConftest() {
     let conftestTool : ToolRunner = tasks.tool(conftestPath);
 
     if (inputCommand == "test") {
-      conftestTool.arg([inputCommand!, inputFile!]);
+      conftestTool.arg([inputCommand!, inputFile!, inputArgs!]);
       return conftestTool.exec();
     }
     
     if (inputCommand == "parse") {
-      conftestTool.arg([inputCommand!, inputFile!]);
+      conftestTool.arg([inputCommand!, inputFile!, inputArgs!]);
       return conftestTool.exec();
     }
 
     else {
-      conftestTool.arg([inputCommand!]);
+      conftestTool.arg([inputCommand!, inputArgs!]);
       return conftestTool.exec();
     }  
 }
