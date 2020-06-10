@@ -60,3 +60,15 @@ stages:
         export INPUT_CONFTESTARGS=""
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task Test
+    - script: |
+        export INPUT_CONFTESTCOMMAND="parse"
+        export INPUT_CONFTESTFILE="./tests/test.json"
+        export INPUT_CONFTESTARGS=""
+        node ./Tasks/Conftest/.bin/Index.js
+      displayName: Run Conftest Task Parse
+    - script: |
+        export INPUT_CONFTESTCOMMAND="verify"
+        export INPUT_CONFTESTFILE=""
+        export INPUT_CONFTESTARGS="-p ./policy"
+        node ./Tasks/Conftest/.bin/Index.js
+      displayName: Run Conftest Task Parse
