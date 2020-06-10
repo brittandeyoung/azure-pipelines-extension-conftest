@@ -69,6 +69,6 @@ stages:
     - script: |
         export INPUT_CONFTESTCOMMAND="verify"
         export INPUT_CONFTESTFILE=""
-        export INPUT_CONFTESTARGS="-p ./policy"
+        export INPUT_CONFTESTARGS="-p policy"
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task verify
