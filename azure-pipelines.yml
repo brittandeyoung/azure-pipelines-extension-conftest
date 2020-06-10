@@ -32,7 +32,7 @@ stages:
     - script: |
         mocha .bin/tests/_suite.js
       displayName: Unit Tests ConftestInstaller Task
-    workingDirectory: ./Tasks/ConftestInstaller/
+      workingDirectory: ./Tasks/ConftestInstaller/
     - script: |
         export INPUT_CONFTESTVERSION="0.18.2"
         node ./Tasks/ConftestInstaller/.bin/Index.js
