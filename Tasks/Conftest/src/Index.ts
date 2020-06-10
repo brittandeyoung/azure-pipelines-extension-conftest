@@ -13,8 +13,8 @@ async function runConftest() {
     let conftestTool : ToolRunner = tasks.tool(conftestPath);
 
     conftestTool.argIf(inputCommand != undefined, inputCommand)
-    conftestTool.argIf(inputArgs != undefined, inputArgs)
     conftestTool.argIf(inputFile != undefined, inputFile)
+    conftestTool.argIf(inputArgs != undefined, inputArgs)
 
     return conftestTool.exec();
 
