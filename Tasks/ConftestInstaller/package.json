@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/brittandeyoung/azure-pipelines-extension-conftest#readme",
   "dependencies": {
-    "@types/mocha": "^5.2.7",
     "@types/node": "^14.0.11",
     "@types/q": "^1.5.4",
     "azure-pipelines-task-lib": "^2.9.5",
@@ -25,6 +24,8 @@
     "tar": "^6.0.2"
   },
   "devDependencies": {
-    "@types/tar": "^4.0.3"
+    "@types/mocha": "^5.2.7",
+    "@types/tar": "^4.0.3",
+    "sync-request": "^6.1.0"
   }
 }
