@@ -14,6 +14,8 @@ stages:
   jobs:
   - job: Build_Task
     displayName: Build Task
+    variables:
+    - group: ado-marketplace
     steps:
     - task: Npm@1
       inputs:
@@ -42,7 +44,7 @@ stages:
     #     customCommand: 'test'
     #   displayName: Test ConftestInstaller Task
     - script: |
-        export INPUT_CONFTESTVERSION="0.18.2"
+        export INPUT_VERSION="0.18.2"
         node ./Tasks/ConftestInstaller/.bin/Index.js
       displayName: Run ConftestInstaller Task
     - script: |
@@ -50,25 +52,45 @@ stages:
       displayName: Build Conftest Task
       workingDirectory: ./Tasks/Conftest/
     - script: |
-        export INPUT_CONFTESTCOMMAND="--version"
-        export INPUT_CONFTESTARGS=""
+        export INPUT_COMMAND="--version"
+        export INPUT_ARGS=""
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task Version
     - script: |
-        export INPUT_CONFTESTCOMMAND="test"
-        export INPUT_CONFTESTFILE="./tests/test.json"
-        export INPUT_CONFTESTARGS="-o stdout"
+        export INPUT_COMMAND="test"
+        export INPUT_FILE="./tests/test.json"
+        export INPUT_ARGS="-o stdout"
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task Test
     - script: |
-        export INPUT_CONFTESTCOMMAND="parse"
-        export INPUT_CONFTESTFILE="./tests/test.json"
-        export INPUT_CONFTESTARGS=""
+        export INPUT_COMMAND="parse"
+        export INPUT_FILE="./tests/test.json"
+        export INPUT_ARGS=""
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task Parse
     - script: |
-        export INPUT_CONFTESTCOMMAND="verify"
-        export INPUT_CONFTESTFILE=""
-        export INPUT_CONFTESTARGS=""
+        export INPUT_COMMAND="verify"
+        export INPUT_FILE=""
+        export INPUT_ARGS=""
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task verify
+    - script: |
+        tfx extension create --manifest-globs vss-extension.json
+      displayName: Build extension
+    - script: |
+        tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung
+      displayName: Publish extension
+      env:
+        VSTS_CLI_PAT: $(VSTS_CLI_PAT)
+- stage: Run_Tasks
+  jobs:
+  - job: Run_Tasks
+    displayName: Run Tasks
+    steps:
+    - task: conftestInstaller@0
+      inputs:
+        version: '0.18.2'
+    - task: conftest@0
+      inputs:
+        command: 'test'
+        file: './tests/test.json'

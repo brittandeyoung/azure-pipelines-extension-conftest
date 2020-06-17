@@ -5,9 +5,9 @@ import path = require('path');
 // import * as installer from './Conftest';
 
 async function runConftest() {
-    let inputCommand = tasks.getInput("conftestCommand", true);
-    let inputArgs = tasks.getInput("conftestArgs", false);
-    let inputFile = tasks.getInput("conftestFile", false); 
+    let inputCommand = tasks.getInput("command", true);
+    let inputArgs = tasks.getInput("arguments", false);
+    let inputFile = tasks.getInput("file", false); 
     let envPath = process.env['PATH'];
     let conftestPath = tasks.which("conftest", true);
     let conftestTool : ToolRunner = tasks.tool(conftestPath);
@@ -17,21 +17,6 @@ async function runConftest() {
     conftestTool.argIf(inputArgs != undefined, inputArgs)
 
     return conftestTool.exec();
-
-    // if (inputCommand == "test") {
-    //   conftestTool.arg([inputCommand!, inputFile!, inputArgs!]);
-    //   return conftestTool.exec();
-    // }
-    // conftestTool.argIf(inputFile != undefined, inputFile!)
-    // if (inputCommand == "parse") {
-    //   conftestTool.arg([inputCommand!, inputFile!, inputArgs!]);
-    //   return conftestTool.exec();
-    // }
-
-    // else {
-    //   conftestTool.arg([inputCommand!, inputArgs!]);
-    //   return conftestTool.exec();
-    // }  
 }
 
 async function run() {

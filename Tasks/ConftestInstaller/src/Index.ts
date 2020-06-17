@@ -5,7 +5,7 @@ import path = require('path');
 import * as installer from './ConftestInstaller';
 
 async function configureConftest() {
-    let inputVersion = tasks.getInput("conftestVersion", true);
+    let inputVersion = tasks.getInput("version", true);
     let conftestPath = await installer.downloadConftest(inputVersion!);
     let envPath = process.env['PATH'];
 

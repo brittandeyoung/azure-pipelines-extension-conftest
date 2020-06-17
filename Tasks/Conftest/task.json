@@ -19,7 +19,7 @@
   "instanceNameFormat": "Conftest",
   "inputs": [
     {
-        "name": "conftestCommand",
+        "name": "command",
         "type": "pickList",
         "label": "Command",
         "defaultValue": "test",
@@ -41,8 +41,16 @@
       "defaultValue": "",
       "required": true,
       "helpMarkDown": "Fully qualified path of the file to evaluate",
-      "visibleRule": "command = test or parse"
-  }
+      "visibleRule": "command = test || command = parse"
+  },
+  {
+    "name": "arguments",
+    "type": "string",
+    "label": "Additional Arguments",
+    "defaultValue": "",
+    "required": false,
+    "helpMarkDown": "Additional arguments to pass"
+  } 
   ],
   "execution": {
       "Node10": {
@@ -56,11 +64,5 @@
     }
   ],
   "messages": {
-    "VerifyConftestInstallation": "Verifying Conftest installation...",
-    "InputVersionNotValidSemanticVersion": "Input version %s is not a valid semantic version",
-    "ConftestNotFoundInFolder": "Conftest executable not found in path %s",
-    "OperatingSystemNotSupported": "Operating system %s is not supported",
-    "ArchitectureNotSupported": "Architecture %s is not supported",
-    "ConftestDownloadFailed": "Failed to download Conftest from url %s. Error %s"
   }
 }
