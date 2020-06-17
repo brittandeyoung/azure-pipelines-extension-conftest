@@ -82,15 +82,15 @@ stages:
       displayName: Publish extension
       env:
         VSTS_CLI_PAT: $(VSTS_CLI_PAT)
-- stage: Run_Tasks
-  jobs:
-  - job: Run_Tasks
-    displayName: Run Tasks
-    steps:
-    - task: conftestInstaller@0
-      inputs:
-        version: '0.18.2'
-    - task: conftest@0
-      inputs:
-        command: 'test'
-        file: './tests/test.json'
+# - stage: Run_Tasks
+#   jobs:
+#   - job: Run_Tasks
+#     displayName: Run Tasks
+#     steps:
+#     - task: conftestInstaller@0
+#       inputs:
+#         version: '0.18.2'
+#     - task: conftest@0
+#       inputs:
+#         command: 'test'
+#         file: './tests/test.json'
