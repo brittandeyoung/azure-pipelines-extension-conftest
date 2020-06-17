@@ -34,7 +34,7 @@ stages:
     - task: Npm@1
       inputs:
         command: 'custom'
-        customCommand: 'install tfx-cli.'
+        customCommand: 'install tfx-cli'
     #   displayName: Install Mocha
     # - task: Npm@1
     #   inputs:
