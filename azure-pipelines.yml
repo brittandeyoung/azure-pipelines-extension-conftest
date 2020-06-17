@@ -31,11 +31,9 @@ stages:
         tsc
       displayName: Build ConftestInstaller Task
       workingDirectory: ./Tasks/ConftestInstaller/
-    - task: Npm@1
-      inputs:
-        command: 'custom'
-        customCommand: 'install -g tfx-cli'
-    #   displayName: Install Mocha
+    - script: |
+        npx tfx-cli
+      displayName: Install Mocha
     # - task: Npm@1
     #   inputs:
     #     command: 'custom'
