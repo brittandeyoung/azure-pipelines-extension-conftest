@@ -69,7 +69,7 @@ stages:
         tfx extension create --manifest-globs vss-extension.json
       displayName: Build extension
     - script: |
-        tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung --no-prompt
+        tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung --no-prompt  --token $VSTS_CLI_PAT
       displayName: Publish extension
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
       env:
