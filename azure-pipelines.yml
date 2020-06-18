@@ -34,7 +34,7 @@ stages:
     - task: Npm@1
       inputs:
         command: 'custom'
-        customCommand: 'install tfx-cli'
+        customCommand: 'install -g tfx-cli'
       displayName: Install tfx-cli
     - script: |
         export INPUT_VERSION="0.18.2"
@@ -67,15 +67,11 @@ stages:
         export INPUT_ARGS=""
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task verify
-    - task: Npm@1
-      inputs:
-        command: 'custom'
-        customCommand: 'tfx extension create --manifest-globs vss-extension.json'
+    - script: | 
+          tfx extension create --manifest-globs vss-extension.json'
       displayName: Build extension
-    - task: Npm@1
-      inputs:
-        command: 'custom'
-        customCommand: 'tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung'
+    - script: |
+          tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung
       displayName: Publish extension
       env:
         VSTS_CLI_PAT: $(VSTS_CLI_PAT)
