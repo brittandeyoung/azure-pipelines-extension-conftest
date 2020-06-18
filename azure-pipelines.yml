@@ -31,9 +31,6 @@ stages:
         tsc
       displayName: Build ConftestInstaller Task
       workingDirectory: ./Tasks/ConftestInstaller/
-    - script: |
-        npx tfx-cli
-      displayName: Install Mocha
     # - task: Npm@1
     #   inputs:
     #     command: 'custom'
@@ -72,10 +69,10 @@ stages:
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task verify
     - script: |
-        tfx extension create --manifest-globs vss-extension.json
+        npx tfx extension create --manifest-globs vss-extension.json
       displayName: Build extension
     - script: |
-        tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung
+        npx tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung
       displayName: Publish extension
       env:
         VSTS_CLI_PAT: $(VSTS_CLI_PAT)
