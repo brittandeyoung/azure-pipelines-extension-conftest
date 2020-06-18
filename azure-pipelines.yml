@@ -69,10 +69,28 @@ stages:
         tfx extension create --manifest-globs vss-extension.json
       displayName: Build extension
     - script: |
-        tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung
+        tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung --no-prompt --token $(VSTS_CLI_PAT)
       displayName: Publish extension
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
       env:
         VSTS_CLI_PAT: $(VSTS_CLI_PAT)
+#     - publish: './'
+#       artifact: extension
+# - stage: Deploy
+#   dependsOn: Build
+#   condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
+#   jobs:
+#   - deployment: Terraform_Apply
+#     displayName: Terraform Apply - DEV
+#     environment: DEV
+#     variables:
+#     - group: vsphere-terraform
+#     - name: TF_WORKSPACE
+#       value: DEV
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
 # - stage: Run_Tasks
 #   jobs:
 #   - job: Run_Tasks
