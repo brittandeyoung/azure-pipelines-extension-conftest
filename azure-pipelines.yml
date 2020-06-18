@@ -31,12 +31,11 @@ stages:
         tsc
       displayName: Build ConftestInstaller Task
       workingDirectory: ./Tasks/ConftestInstaller/
-    # - task: Npm@1
-    #   inputs:
-    #     command: 'custom'
-    #     workingDir: './Tasks/ConftestInstaller'
-    #     customCommand: 'test'
-    #   displayName: Test ConftestInstaller Task
+      - task: Npm@1
+      inputs:
+        command: 'custom'
+        customCommand: 'install tfx-cli'
+      displayName: Install tfx-cli
     - script: |
         export INPUT_VERSION="0.18.2"
         node ./Tasks/ConftestInstaller/.bin/Index.js
@@ -68,11 +67,15 @@ stages:
         export INPUT_ARGS=""
         node ./Tasks/Conftest/.bin/Index.js
       displayName: Run Conftest Task verify
-    - script: |
-        npx tfx extension create --manifest-globs vss-extension.json
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        customCommand: 'tfx extension create --manifest-globs vss-extension.json'
       displayName: Build extension
-    - script: |
-        npx tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung
+    - task: Npm@1
+      inputs:
+        command: 'custom'
+        customCommand: 'tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung'
       displayName: Publish extension
       env:
         VSTS_CLI_PAT: $(VSTS_CLI_PAT)
