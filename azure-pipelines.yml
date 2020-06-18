@@ -66,10 +66,10 @@ stages:
         sudo npm install -g tfx-cli
       displayName: install tfx-cli
     - script: |
-        tfx extension create --manifest-globs vss-extension.json'
+        tfx extension create --manifest-globs vss-extension.json
       displayName: Build extension
     - script: |
-          tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung
+        tfx extension publish --manifest-globs vss-extension.json --share-with brittandeyoung
       displayName: Publish extension
       env:
         VSTS_CLI_PAT: $(VSTS_CLI_PAT)
