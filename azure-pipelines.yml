@@ -31,7 +31,7 @@ stages:
         tsc
       displayName: Build ConftestInstaller Task
       workingDirectory: ./Tasks/ConftestInstaller/
-      - task: Npm@1
+    - task: Npm@1
       inputs:
         command: 'custom'
         customCommand: 'install tfx-cli'
