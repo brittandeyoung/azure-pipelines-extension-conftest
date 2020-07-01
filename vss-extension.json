@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "conftest",
   "name": "conftest",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "brittandeyoung",
   "targets": [
       {
