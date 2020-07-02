@@ -4,7 +4,7 @@
   "description": "A conftest installer task for Azure Pipelines",
   "main": ".bin/Index.js",
   "scripts": {
-    "test": "mocha .bin/tests/_suite.js"
+    "test": "npx mocha .bin/tests/_suite.js"
   },
   "repository": {
     "type": "git",
