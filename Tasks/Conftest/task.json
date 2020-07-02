@@ -33,53 +33,47 @@
             "verify": "verify"
         }
     },
-  {
-    "name": "file",
-    "type": "filePath",
-    "label": "File",
-    "defaultValue": "",
-    "required": true,
-    "helpMarkDown": "Fully qualified path of the file to evaluate",
-    "visibleRule": "command = test || command = parse"
-  },
-  {
-    "name": "filepath",
-    "type": "filePath",
-    "label": "FilePath",
-    "defaultValue": "",
-    "required": true,
-    "helpMarkDown": "File Path to repo policies",
-    "visibleRule": "command = pull || command = push"
-  },
-  {
-    "name": "repository",
-    "type": "string",
-    "label": "Repository",
-    "defaultValue": "",
-    "required": true,
-    "helpMarkDown": "Repository where you will push policies to or pull polcies from",
-    "visibleRule": "command = pull || command = push"
-  },
-  {
-    "name": "arguments",
-    "type": "string",
-    "label": "Additional Arguments",
-    "defaultValue": "",
-    "required": false,
-    "helpMarkDown": "Additional arguments to pass"
-  } 
+    {
+      "name": "file",
+      "type": "filePath",
+      "label": "File",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Fully qualified path of the file to evaluate",
+      "visibleRule": "command = test || command = parse"
+    },
+    {
+      "name": "filepath",
+      "type": "filePath",
+      "label": "FilePath",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "File Path to repo policies",
+      "visibleRule": "command = pull || command = push"
+    },
+    {
+      "name": "repository",
+      "type": "string",
+      "label": "Repository",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Repository where you will push policies to or pull polcies from",
+      "visibleRule": "command = pull || command = push"
+    },
+    {
+      "name": "arguments",
+      "type": "string",
+      "label": "Additional Arguments",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Additional arguments to pass"
+    } 
   ],
   "execution": {
       "Node10": {
           "target": ".bin/Index.js"
       }
   },
-  "outputVariables": [
-    {
-        "name": "conftestLocation",
-        "description": "The location of the conftest binary that was installed on the agent."
-    }
-  ],
   "messages": {
   }
 }
