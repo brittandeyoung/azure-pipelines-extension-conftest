@@ -17,20 +17,16 @@ stages:
     variables:
     - group: ado-marketplace
     steps:
-    # - task: NodeTool@0
-    #   inputs:
-    #     versionSpec: '10.18.0' 
-    #     checkLatest: false
     - task: Npm@1
       inputs:
         command: 'install'
         workingDir: './Tasks/ConftestInstaller'
-      displayName: NPM Install ConftestInstaller
+      displayName: NPM Install ConftestInstaller Task
     - task: Npm@1
       inputs:
         command: 'install'
         workingDir: './Tasks/Conftest'
-      displayName: NPM Install Conftest
+      displayName: NPM Install Conftest Task
     - script: |
         tsc
       displayName: Build ConftestInstaller Task
@@ -40,6 +36,7 @@ stages:
         command: 'custom'
         workingDir: './Tasks/ConftestInstaller'
         customCommand: 'test'
+      displayName: Unit tests ConftestInstaller Task
     - script: |
         export INPUT_VERSION="0.18.2"
         node ./Tasks/ConftestInstaller/.bin/Index.js

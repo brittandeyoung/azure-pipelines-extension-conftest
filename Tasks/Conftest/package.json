@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/brittandeyoung/azure-pipelines-extension-conftest#readme",
   "dependencies": {
-    "azure-pipelines-task-lib": "^2.9.5",
+    "azure-pipelines-task-lib": "^3.0.0-preview",
     "azure-pipelines-tool-lib": "^0.12.0"
   },
   "devDependencies": {
