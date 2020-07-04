@@ -17,6 +17,10 @@ stages:
     variables:
     - group: ado-marketplace
     steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '10.18.0' 
+        checkLatest: false
     - task: Npm@1
       inputs:
         command: 'install'
