@@ -40,8 +40,8 @@ describe('Conftest Installer tests', function () {
       assert.equal(tr.succeeded, false, 'should have failed');
       assert.equal(tr.warningIssues, 0, "should have no warnings");
       assert.equal(tr.errorIssues.length, 1, "should have 1 error issue");
-      assert.equal(tr.errorIssues[0], 'Bad input was given', 'error issue output');
-      assert.equal(tr.stdout.indexOf('Hello bad'), -1, "Should not display Hello bad");
+      assert.equal(tr.errorIssues[0], 'Error: loc_mock_InputVersionNotValidSemanticVersion 1', 'Invalid version number');
+      // assert.equal(tr.stdout.indexOf('Hello bad'), -1, "Should not display Hello bad");
   
       done();
     });    
