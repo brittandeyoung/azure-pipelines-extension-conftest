@@ -4,13 +4,13 @@ import * as ttm from 'azure-pipelines-task-lib/mock-test';
 
 describe('Conftest Installer tests', function () {
 
-    // before( function() {
+    before( function() {
 
-    // });
+    });
 
-    // after(() => {
+    after(() => {
 
-    // });
+    });
 
     it('should succeed with simple inputs', function(done: MochaDone) {
       this.timeout(10000);
@@ -18,7 +18,7 @@ describe('Conftest Installer tests', function () {
       let tp = path.join(__dirname, 'success.js');
       console.log(tp)
       let tr: ttm.MockTestRunner = new ttm.MockTestRunner(tp);
-  
+
       tr.run();
       console.log(tr.succeeded);
       assert.equal(tr.succeeded, true, 'should have succeeded');
