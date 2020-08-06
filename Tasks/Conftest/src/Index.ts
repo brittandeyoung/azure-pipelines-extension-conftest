@@ -14,23 +14,51 @@ async function runConftest() {
     let conftestPath = tasks.which("conftest", true);
     let conftestTool : ToolRunner = tasks.tool(conftestPath);
 
-    if (inputCommand == "test" || inputCommand == "parse") {
-        conftestTool.argIf(inputCommand != undefined, inputCommand)
-        conftestTool.argIf(inputFile != undefined, inputFile)
-        conftestTool.argIf(inputArgs != undefined, inputArgs)
+    switch(inputCommand) {
+      case "test":
+        conftestTool.argIf(inputCommand != undefined, inputCommand);
+        conftestTool.argIf(inputFile != undefined, inputFile);
+        conftestTool.argIf(inputArgs != undefined, inputArgs);
+        break; 
+      case "parse":
+        conftestTool.argIf(inputCommand != undefined, inputCommand);
+        conftestTool.argIf(inputFile != undefined, inputFile);
+        conftestTool.argIf(inputArgs != undefined, inputArgs);
+        break; 
+      case "verify":
+        conftestTool.argIf(inputCommand != undefined, inputCommand);
+        conftestTool.argIf(inputArgs != undefined, inputArgs);
+        break; 
+      case "pull":
+        conftestTool.argIf(inputCommand != undefined, inputCommand);
+        conftestTool.argIf(inputRepo != undefined, inputRepo);
+        conftestTool.argIf(inputFilePath != undefined, inputFilePath);
+        conftestTool.argIf(inputArgs != undefined, inputArgs);
+        break; 
+      case "push":
+        conftestTool.argIf(inputCommand != undefined, inputCommand);
+        conftestTool.argIf(inputRepo != undefined, inputRepo);
+        conftestTool.argIf(inputFilePath != undefined, inputFilePath);
+        conftestTool.argIf(inputArgs != undefined, inputArgs);
+        break; 
     }
+    // if (inputCommand == "test" || inputCommand == "parse") {
+    //     conftestTool.argIf(inputCommand != undefined, inputCommand)
+    //     conftestTool.argIf(inputFile != undefined, inputFile)
+    //     conftestTool.argIf(inputArgs != undefined, inputArgs)
+    // }
     
-    if (inputCommand == "verify") {
-      conftestTool.argIf(inputCommand != undefined, inputCommand)
-      conftestTool.argIf(inputArgs != undefined, inputArgs)
-    }
+    // if (inputCommand == "verify") {
+    //   conftestTool.argIf(inputCommand != undefined, inputCommand)
+    //   conftestTool.argIf(inputArgs != undefined, inputArgs)
+    // }
 
-    if (inputCommand == "pull" || inputCommand == "push") {
-        conftestTool.argIf(inputCommand != undefined, inputCommand)
-        conftestTool.argIf(inputRepo != undefined, inputRepo)
-        conftestTool.argIf(inputFilePath != undefined, inputFilePath)
-        conftestTool.argIf(inputArgs != undefined, inputArgs)
-    }
+    // if (inputCommand == "pull" || inputCommand == "push") {
+    //     conftestTool.argIf(inputCommand != undefined, inputCommand)
+    //     conftestTool.argIf(inputRepo != undefined, inputRepo)
+    //     conftestTool.argIf(inputFilePath != undefined, inputFilePath)
+    //     conftestTool.argIf(inputArgs != undefined, inputArgs)
+    // }
 
     return conftestTool.exec();
 }
