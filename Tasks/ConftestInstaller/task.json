@@ -15,7 +15,7 @@
   "instanceNameFormat": "Install Conftest $(conftestVersion)",
   "inputs": [
       {
-          "name": "conftestVersion",
+          "name": "version",
           "type": "string",
           "label": "Version",
           "defaultValue": "0.18.2",

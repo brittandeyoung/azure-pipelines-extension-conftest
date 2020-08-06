@@ -4,7 +4,6 @@ import path = require('path');
 import os = require('os');
 import fs = require('fs');
 
-const uuidV4 = require('uuid/v4');
 const conftestToolName = "conftest";
 const isWindows = os.type().match(/^Win/);
 
@@ -15,22 +14,53 @@ export async function downloadConftest(inputVersion: string): Promise<string> {
     }
 
     let cachedToolPath = tools.findLocalTool(conftestToolName, version);
-    if (!cachedToolPath) {
-        let conftestDownloadUrl = getConftestDownloadUrl(version);
-        let fileName = `${conftestToolName}-${version}-${uuidV4()}.zip`;
-        let conftestDownloadPath;
 
+    if (!cachedToolPath) {
+        let platform: string;
+        let architecture: string;
+        let archive :string
+
+        switch(os.type()) {
+          case "Darwin":
+              platform = "Darwin";
+              archive = ".tar.gz";
+              break;
+          
+          case "Linux":
+              platform = "Linux";
+              archive = ".tar.gz";
+              break;
+          
+          case "Windows_NT":
+              platform = "Windows";
+              archive = ".zip";
+              break;
+          
+          default:
+              throw new Error(tasks.loc("OperatingSystemNotSupported", os.type()));
+        }
+
+        let fileName = `conftest_${version}_${platform}_x86_64${archive}`;
+        let conftestDownloadPath;
+        let conftestDownloadUrl = `https://github.com/instrumenta/conftest/releases/download/v${version}/conftest_${version}_${platform}_x86_64${archive}`
         try {
             conftestDownloadPath = await tools.downloadTool(conftestDownloadUrl, fileName);
         } catch (exception) {
             throw new Error(tasks.loc("ConftestDownloadFailed", conftestDownloadUrl, exception));
         }
 
-        let conftestUnzippedPath = await tools.extractZip(conftestDownloadPath);
-        cachedToolPath = await tools.cacheDir(conftestUnzippedPath, conftestToolName, version);
+        if (isWindows) {
+          let conftestUnzippedPath = await tools.extractZip(conftestDownloadPath);
+          cachedToolPath = await tools.cacheDir(conftestUnzippedPath, conftestToolName, version);
+        }
+        if (!isWindows) {
+          let conftestUnzippedPath = await tools.extractTar(conftestDownloadPath);
+          cachedToolPath = await tools.cacheDir(conftestUnzippedPath, conftestToolName, version);
+        }
     }
 
     let conftestPath = findConftestExecutable(cachedToolPath);
+
     if (!conftestPath) {
         throw new Error(tasks.loc("ConftestNotFoundInFolder", cachedToolPath));
     }
@@ -42,47 +72,6 @@ export async function downloadConftest(inputVersion: string): Promise<string> {
     tasks.setVariable('conftestLocation', conftestPath);
 
     return conftestPath;
-}
-
-function getConftestDownloadUrl(version: string): string {
-    let platform: string;
-    let architecture: string;
-    let archive :string
-
-    switch(os.type()) {
-        case "Darwin":
-            platform = "Darwin";
-            archive = ".tar.gz";
-            break;
-        
-        case "Linux":
-            platform = "Linux";
-            archive = ".tar.gz";
-            break;
-        
-        case "Windows_NT":
-            platform = "Windows";
-            archive = ".zip";
-            break;
-        
-        default:
-            throw new Error(tasks.loc("OperatingSystemNotSupported", os.type()));
-    }
-
-    switch(os.arch()) {
-        case "x64":
-            architecture = "amd64";
-            break;
-        
-        case "x32":
-            architecture = "386";
-            break;
-        
-        default:
-            throw new Error(tasks.loc("ArchitectureNotSupported", os.arch()));
-    }
-
-    return `https://github.com/instrumenta/conftest/releases/download/v${version}/conftest_${version}_${platform}_x86_64${archive}`;
 }
 
 function findConftestExecutable(rootFolder: string): string {
