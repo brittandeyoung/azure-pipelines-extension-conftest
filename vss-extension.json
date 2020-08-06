@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "conftest",
   "name": "conftest",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "publisher": "brittandeyoung",
   "targets": [
       {
@@ -16,6 +16,14 @@
   "Tags": [ 
     "conftest"
   ],
+  "content": {
+    "details": {
+      "path": "overview.md"
+    },
+    "license": {
+      "path": "license.txt"
+    }
+  },
   "icons": {
       "default": "Images/open-policy-agent.png"        
   },
